@@ -26,8 +26,8 @@ namespace Flarum.Api.Bases
 
         }
 
-        public abstract Task MapRequest(TRequest? request, string token);
+        public abstract HttpRequestMessage GenerateRequestMessage(FlarumApiHandlerOption option);
 
-        public abstract HttpRequestMessage GenerateRequestMessage();
+        public abstract IFlarumModel ProcessResponseAsync<TResult>(HttpResponseMessage response, FlarumApiHandlerOption option);
     }
 }

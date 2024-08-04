@@ -13,14 +13,14 @@ namespace Flarum.Api.ApiContracts
 
         public override string ApiPath => "api/discussions";
 
-        public override HttpRequestMessage GenerateRequestMessage()
+        public override HttpRequestMessage GenerateRequestMessage(FlarumApiHandlerOption option)
         {
-            return base.GenerateRequestMessage();
+            return base.GenerateRequestMessage(option);
         }
 
-        public override async Task<string> MapRequest(GetDiscussionsRequest? request, string token)
+        public override TResult ProcessResponseAsync<TResult>(HttpResponseMessage response)
         {
-            return await base.MapRequest(request, token);
+            return base.ProcessResponseAsync<TResult>(response);
         }
     }
 
