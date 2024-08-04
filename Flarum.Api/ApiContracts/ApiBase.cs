@@ -16,20 +16,23 @@ namespace Flarum.Api.ApiContracts
     {
         public override HttpMethod Method => null;
 
-        public override string url => null;
+        public override string ApiPath => null;
 
         public override HttpRequestMessage GenerateRequestMessage()
         {
             var request = new HttpRequestMessage();
+            var fullUri = $"{url}/{ApiPath}";
             request.Method = Method;
-            request.RequestUri = new Uri(url);
+            request.RequestUri = new Uri(fullUri);
             request.Headers.Add("UserAgent", UserAgent);
             return request;
         }
 
-        public override Task MapRequest(TRequest? request, string token)
+        public override Task<string> MapRequest(TRequest? request, string token)
         {
-            throw new NotImplementedException();
+            HttpRequestMessage message = GenerateRequestMessage();
+            HttpResponseMessage response = new HttpClient().SendAsync(message).Result;
+            return response.Content.ReadAsStringAsync();
         }
     }
 }

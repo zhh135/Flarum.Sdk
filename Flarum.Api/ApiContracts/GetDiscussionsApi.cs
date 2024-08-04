@@ -11,18 +11,16 @@ namespace Flarum.Api.ApiContracts
     {
         public override HttpMethod Method => HttpMethod.Get;
 
-        public override string url => "https://community.wvbtech.com/api/discussions";
+        public override string ApiPath => "api/discussions";
 
         public override HttpRequestMessage GenerateRequestMessage()
         {
             return base.GenerateRequestMessage();
         }
 
-        public override async Task MapRequest(GetDiscussionsRequest? request, string token)
+        public override async Task<string> MapRequest(GetDiscussionsRequest? request, string token)
         {
-            HttpRequestMessage message = base.GenerateRequestMessage();
-            HttpResponseMessage response = new HttpClient().SendAsync(message).Result;
-            return 
+            return await base.MapRequest(request, token);
         }
     }
 
