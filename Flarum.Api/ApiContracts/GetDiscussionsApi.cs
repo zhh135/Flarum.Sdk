@@ -1,4 +1,5 @@
 ﻿using Flarum.Api.Bases;
+using Kengwang.Toolkit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +8,25 @@ using System.Threading.Tasks;
 
 namespace Flarum.Api.ApiContracts
 {
-    public class GetDiscussionsApi : ApiBase<GetDiscussionsRequest, GetDiscussinsResponse, ErrorResultBase>
+    public class GetDiscussionsApi : ApiBase<GetDiscussionsActualRequest, GetDiscussionsRequest, GetDiscussinsResponse, ErrorResultBase>
     {
         public override HttpMethod Method => HttpMethod.Get;
 
         public override string ApiPath => "api/discussions";
 
-        public override HttpRequestMessage GenerateRequestMessage(FlarumApiHandlerOption option)
+        
+
+        public override Task MapRequest(GetDiscussionsRequest request)
         {
-            return base.GenerateRequestMessage(option);
+            throw new NotImplementedException();
         }
 
-        public override TResult ProcessResponseAsync<TResult>(HttpResponseMessage response)
-        {
-            return base.ProcessResponseAsync<TResult>(response);
-        }
+        
+    }
+
+    public class GetDiscussionsActualRequest : ActualRequestBase
+    {
+
     }
 
     public class GetDiscussionsRequest : RequestBase

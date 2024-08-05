@@ -11,6 +11,7 @@ namespace Flarum.Api
         public Dictionary<string, string> Cookies { get; } = new();
 
         public string? UserAgent { get; set; } = null;
+        public string? Url { get; set; } = "https://discuss.flarumm.org";
 
         public FlarumApiHandlerOption()
         {
