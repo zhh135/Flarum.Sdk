@@ -18,7 +18,7 @@ namespace Flarum.Api.Bases
 
         public override string ApiPath => null;
 
-        public override HttpRequestMessage GenerateRequestMessageAsync(FlarumApiHandlerOption option)
+        public override async Task<HttpRequestMessage> GenerateRequestMessageAsync(FlarumApiHandlerOption option)
         {
             var request = new HttpRequestMessage();
             var fullUri = $"{option.Url}/{ApiPath}";

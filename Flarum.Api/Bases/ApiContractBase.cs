@@ -28,9 +28,13 @@ namespace Flarum.Api.Bases
 
         }
 
-        public abstract HttpRequestMessage GenerateRequestMessageAsync(FlarumApiHandlerOption option);
+        public abstract Task<HttpRequestMessage> GenerateRequestMessageAsync(FlarumApiHandlerOption option);
+
+        public abstract Task<HttpRequestMessage> GenerateRequestMessageAsync<TActualRequestModel>(TActualRequestModel actualRequest, FlarumApiHandlerOption option);
 
         public abstract Task MapRequest(TRequest? request);
+
+        public abstract Task<Results<TResponse, ErrorResultBase>> ProcessResponseAsync(HttpResponseMessage response, FlarumApiHandlerOption option);
 
         public abstract Task<Results<TResponseModel, ErrorResultBase>> ProcessResponseAsync<TResponseModel>(HttpResponseMessage response, FlarumApiHandlerOption option);
     }
