@@ -2,5 +2,6 @@
 {
     public abstract class RequestBase
     {
+        public string Token { get; set; }
     }
 }

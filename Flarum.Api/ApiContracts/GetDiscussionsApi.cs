@@ -11,14 +11,11 @@ namespace Flarum.Api.ApiContracts
     public class GetDiscussionsApi : ApiBase<GetDiscussionsActualRequest, GetDiscussionsRequest, GetDiscussinsResponse, ErrorResultBase>
     {
         public override HttpMethod Method => HttpMethod.Get;
-
         public override string ApiPath => "api/discussions";
-
-        
 
         public override Task MapRequest(GetDiscussionsRequest request)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         
@@ -34,7 +31,7 @@ namespace Flarum.Api.ApiContracts
 
     }
 
-    public class GetDiscussinsResponse : ResponseBase
+    public class GetDiscussinsResponse : CodedResponseBase
     {
 
     }

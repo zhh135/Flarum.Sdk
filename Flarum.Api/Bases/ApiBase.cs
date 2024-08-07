@@ -1,28 +1,24 @@
-﻿using Flarum.Api.Bases;
-using Kengwang.Toolkit;
-using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Kengwang.Toolkit;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace Flarum.Api.ApiContracts
+using Flarum.Api.Bases;
+
+
+namespace Flarum.Api.Bases
 {
-    public abstract class ApiBase<TActualRequest, TRequest, TResponse, TError> 
+    public abstract class ApiBase<TActualRequest, TRequest, TResponse, TError>
         : ApiContractBase<TActualRequest, TRequest, TResponse, TError>
         where TActualRequest : ActualRequestBase
         where TRequest : RequestBase
-        where TResponse : ResponseBase
+        where TResponse : ResponseBase, new()
         where TError : ErrorResultBase
-        
     {
         public override HttpMethod Method => null;
 
         public override string ApiPath => null;
 
-        public override HttpRequestMessage GenerateRequestMessage(FlarumApiHandlerOption option)
+        public override HttpRequestMessage GenerateRequestMessageAsync(FlarumApiHandlerOption option)
         {
             var request = new HttpRequestMessage();
             var fullUri = $"{option.Url}/{ApiPath}";
@@ -41,8 +37,7 @@ namespace Flarum.Api.ApiContracts
         {
             return Task.CompletedTask;
         }
-
-        public override async Task<Results<TResponseModel, ErrorResultBase>> ProcessResponse<TResponseModel>(HttpResponseMessage response, FlarumApiHandlerOption option)
+        public override async Task<Results<TResponseModel, ErrorResultBase>> ProcessResponseAsync<TResponseModel>(HttpResponseMessage response, FlarumApiHandlerOption option)
         {
             if (!response.IsSuccessStatusCode)
             {

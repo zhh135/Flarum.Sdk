@@ -10,7 +10,7 @@ namespace Flarum.Api.Bases
     public abstract class ApiContractBase<TActualRequest, TRequest, TResponse, TError>
         where TActualRequest : ActualRequestBase
         where TRequest : RequestBase
-        where TResponse : ResponseBase
+        where TResponse : ResponseBase, new()
         where TError : ErrorResultBase
     {
         public abstract HttpMethod Method { get; }
@@ -18,7 +18,7 @@ namespace Flarum.Api.Bases
         public virtual Dictionary<string, string> Cookies { get; } = new();
         public virtual string? UserAgent { get; } = null;
 
-        public TActualRequest actualRequest { get; set; }
+        public TActualRequest ActualRequest { get; set; }
         public TRequest Request { get; set; }
         public TResponse Response { get; set; } 
         public TError Error { get; set; }
@@ -28,10 +28,10 @@ namespace Flarum.Api.Bases
 
         }
 
-        public abstract HttpRequestMessage GenerateRequestMessage(FlarumApiHandlerOption option);
+        public abstract HttpRequestMessage GenerateRequestMessageAsync(FlarumApiHandlerOption option);
 
         public abstract Task MapRequest(TRequest? request);
 
-        public abstract Task<Results<TResponseModel, ErrorResultBase>> ProcessResponse<TResponseModel>(HttpResponseMessage response, FlarumApiHandlerOption option);
+        public abstract Task<Results<TResponseModel, ErrorResultBase>> ProcessResponseAsync<TResponseModel>(HttpResponseMessage response, FlarumApiHandlerOption option);
     }
 }
