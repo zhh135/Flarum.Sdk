@@ -35,19 +35,19 @@ namespace Flarum.Api
 
         public async Task<Results<TResponse, ErrorResultBase>> RequestAsync<TRequest, TResponse, TError, TActualRequest>(
             ApiContractBase<TActualRequest, TRequest, TResponse, TError> contract, TRequest? request,
-            FlarumApiHandlerOption option, CancellationToken cancellationToken = default)
+            FlarumApiHandlerOption option)
             where TError : ErrorResultBase where TActualRequest : ActualRequestBase where TRequest : RequestBase where TResponse : ResponseBase, new()
         {
             var client = new HttpClient(_httpClientHandler);
             contract.Request = request;
             await contract.MapRequest(request).ConfigureAwait(false);
-            var response = await client.SendAsync(await contract.GenerateRequestMessageAsync(option).ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
+            var response = await client.SendAsync(await contract.GenerateRequestMessageAsync(option).ConfigureAwait(false)).ConfigureAwait(false);
             return await contract.ProcessResponseAsync(response, option).ConfigureAwait(false);
         }
 
         public async Task<Results<TCustomResponse, ErrorResultBase>> RequestAsync<TCustomResponse, TRequest, TResponse, TError, TActualRequest>(
             ApiContractBase<TActualRequest, TRequest, TResponse, TError> contract, TRequest? request,
-            FlarumApiHandlerOption option, CancellationToken cancellationToken = default)
+            FlarumApiHandlerOption option)
             where TError : ErrorResultBase where TActualRequest : ActualRequestBase where TRequest : RequestBase where TCustomResponse : ResponseBase, new() where TResponse : ResponseBase, new()
         {
             var client = new HttpClient(_httpClientHandler);
@@ -59,7 +59,7 @@ namespace Flarum.Api
 
         public async Task<Results<TCustomResponse, ErrorResultBase>> RequestAsync<TCustomRequest, TCustomResponse, TRequest, TResponse, TError, TActualRequest>(
             ApiContractBase<TActualRequest, TRequest, TResponse, TError> contract, bool differ, TCustomRequest? request,
-            FlarumApiHandlerOption option, CancellationToken cancellationToken = default)
+            FlarumApiHandlerOption option)
             where TError : ErrorResultBase where TActualRequest : ActualRequestBase where TRequest : RequestBase where TResponse : ResponseBase, new() where TCustomResponse : ResponseBase, new()
         {
             var client = new HttpClient(_httpClientHandler);
@@ -69,7 +69,7 @@ namespace Flarum.Api
 
         public async Task<Results<TResponse, ErrorResultBase>> RequestAsync<TCustomRequest, TRequest, TResponse, TError, TActualRequest>(
             ApiContractBase<TActualRequest, TRequest, TResponse, TError> contract, bool differ, TCustomRequest? request,
-            FlarumApiHandlerOption option, CancellationToken cancellationToken = default)
+            FlarumApiHandlerOption option)
             where TError : ErrorResultBase where TActualRequest : ActualRequestBase where TRequest : RequestBase where TResponse : ResponseBase, new()
         {
             var client = new HttpClient(_httpClientHandler);

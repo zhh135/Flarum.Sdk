@@ -20,6 +20,11 @@ namespace Flarum.Api.Bases
 
         public override async Task<HttpRequestMessage> GenerateRequestMessageAsync(FlarumApiHandlerOption option)
         {
+            return await GenerateRequestMessageAsync(ActualRequest!, option).ConfigureAwait(false);    
+        }
+
+        public override Task<HttpRequestMessage> GenerateRequestMessageAsync<TActualRequestModel>(TActualRequestModel actualRequest, FlarumApiHandlerOption option)
+        {
             var request = new HttpRequestMessage();
             var fullUri = $"{option.Url}/{ApiPath}";
             request.Method = Method;
@@ -30,13 +35,19 @@ namespace Flarum.Api.Bases
             {
                 cookies[keyValuePair.Key] = keyValuePair.Value;
             }
-            return request;
+            return Task.FromResult(request);
         }
 
         public override Task MapRequest(TRequest? request)
         {
             return Task.CompletedTask;
         }
+
+        public override async Task<Results<TResponse, ErrorResultBase>> ProcessResponseAsync(HttpResponseMessage response, FlarumApiHandlerOption option)
+        {
+            return await ProcessResponseAsync<TResponse>(response, option).ConfigureAwait(false);
+        }
+
         public override async Task<Results<TResponseModel, ErrorResultBase>> ProcessResponseAsync<TResponseModel>(HttpResponseMessage response, FlarumApiHandlerOption option)
         {
             if (!response.IsSuccessStatusCode)

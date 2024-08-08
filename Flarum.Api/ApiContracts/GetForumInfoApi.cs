@@ -1,6 +1,9 @@
-﻿using Flarum.Api.Bases;
+﻿using System.Text.Json.Serialization;
+using Flarum.Api.Bases;
+using Flarum.Api.Models.ResponseModel;
+using Kengwang.Toolkit;
 
-namespace Flarum.Api
+namespace Flarum.Api.ApiContracts
 {
     public class GetForumInfoApi : ApiBase<GetForumInfoActualRequest, GetForumInfoRequest, GetForumInfoResponse, ErrorResultBase>
     {
@@ -20,11 +23,11 @@ namespace Flarum.Api
 
     public class GetForumInfoRequest : RequestBase
     {
-
+        
     }
 
     public class GetForumInfoResponse : CodedResponseBase
     {
-
+        [JsonPropertyName("attributes")] public FlarumForumDto ForumInfo { get; set; }
     }
 }
