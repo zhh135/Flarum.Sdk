@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 
 using Flarum.Api.Bases;
+using Flarum.Api.Helpers;
 
 
 namespace Flarum.Api.Bases
@@ -18,6 +19,8 @@ namespace Flarum.Api.Bases
 
         public override string ApiPath => null;
 
+        public override string? UserAgent => "pc";
+
         public override async Task<HttpRequestMessage> GenerateRequestMessageAsync(FlarumApiHandlerOption option)
         {
             return await GenerateRequestMessageAsync(ActualRequest!, option).ConfigureAwait(false);    
@@ -29,7 +32,7 @@ namespace Flarum.Api.Bases
             var fullUri = $"{option.Url}/{ApiPath}";
             request.Method = Method;
             request.RequestUri = new Uri(fullUri);
-            request.Headers.Add("UserAgent", UserAgent);
+            request.Headers.Add("UserAgent", UserAgentHelper.GetRandomUserAgent(UserAgent));
             var cookies = option.Cookies.ToDictionary(t => t.Key, t => t.Value);
             foreach (var keyValuePair in Cookies)
             {
@@ -59,6 +62,7 @@ namespace Flarum.Api.Bases
             if (buffer is null || buffer.Length == 0) return new ErrorResultBase(500, "返回体预读取错误");
 
             var result = Encoding.UTF8.GetString(buffer);
+            result = StringHelper.ConvertUnicodeToString(result);
             var ret = JsonSerializer.Deserialize<TResponseModel>(result, option.JsonSerializerOptions);
 
             if (ret is null) return new ErrorResultBase(500, "返回 JSON 解析为空");
