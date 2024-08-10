@@ -45,6 +45,5 @@ namespace Flarum.Api.Models.ResponseModel
         [JsonPropertyName("canViewFlags")] public bool CanViewFlags { get; set; }
         [JsonPropertyName("allowUsernameMentionFormat")] public bool AllowUsernameMentionFormat { get; set; }
         [JsonPropertyName("canBypassTagCounts")] public bool CanBypassTagCounts { get; set; }
-        
     }
 }

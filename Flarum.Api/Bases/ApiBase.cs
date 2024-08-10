@@ -62,13 +62,13 @@ namespace Flarum.Api.Bases
             if (buffer is null || buffer.Length == 0) return new ErrorResultBase(500, "返回体预读取错误");
 
             var result = Encoding.UTF8.GetString(buffer);
-            result = StringHelper.ConvertUnicodeToString(result);
-            var ret = JsonSerializer.Deserialize<TResponseModel>(result, option.JsonSerializerOptions);
+            //result = StringHelper.ConvertUnicodeToString(result);, option.JsonSerializerOptions
+            var ret = JsonSerializer.Deserialize<TResponseModel>(result);
 
             if (ret is null) return new ErrorResultBase(500, "返回 JSON 解析为空");
-            if (ret is CodedResponseBase codedResponseBase && codedResponseBase.Code != 200)
+            if (ret is CodedResponseBase codedResponseBase && ((int)response.StatusCode) != 200)
                 return Results<TResponseModel, ErrorResultBase>
-                       .CreateError(new ErrorResultBase(codedResponseBase.Code, "返回值不为 200")).WithValue(ret);
+                       .CreateError(new ErrorResultBase(((int)response.StatusCode), "返回值不为 200")).WithValue(ret);
             return ret;
         }
     }

@@ -26,8 +26,8 @@ namespace Flarum.Api.ApiContracts
         
     }
 
-    public class GetForumInfoResponse : CodedResponseBase
+    public class GetForumInfoResponse : ResponseBase
     {
-        [JsonPropertyName("attributes")] public FlarumForumDto ForumInfo { get; set; }
+        [JsonPropertyName("attributes")] public FlarumForumDto flarumForum { get; set; }
     }
 }
