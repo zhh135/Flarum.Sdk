@@ -28,6 +28,12 @@ namespace Flarum.Api.ApiContracts
 
     public class GetForumInfoResponse : ResponseBase
     {
-        [JsonPropertyName("attributes")] public FlarumForumDto flarumForum { get; set; }
+        [JsonPropertyName("data")] public ForumData Data { get; set; }
+
+        public class ForumData : FlarumDataBase
+        {
+            [JsonPropertyName("attributes")] public FlarumForumDto flarumForum { get; set; }
+        }
+        
     }
 }

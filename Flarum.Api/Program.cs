@@ -7,8 +7,8 @@ var options = new FlarumApiHandlerOption();
 options.Url = "https://discuss.flarum.org/";
 var result = await handler.RequestAsync<GetForumInfoRequest, GetForumInfoResponse, ErrorResultBase, GetForumInfoActualRequest>(new GetForumInfoApi(), options);
 var info = result.Match(
-    success => success,
+    success => success?.Data.flarumForum,
     error => new() { });
-Console.WriteLine($"{info.flarumForum.Title}");
+Console.WriteLine($"{info.Title}");
 
 //Console.WriteLine($"title:{info.Title}");

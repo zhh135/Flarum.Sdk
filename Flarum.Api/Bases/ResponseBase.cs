@@ -1,6 +1,8 @@
-﻿namespace Flarum.Api.Bases
+﻿using System.Text.Json.Serialization;
+
+namespace Flarum.Api.Bases
 {
-    public abstract class ResponseBase
+    public class ResponseBase
     {
     }
 }

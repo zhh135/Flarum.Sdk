@@ -66,7 +66,7 @@ namespace Flarum.Api.Bases
             var ret = JsonSerializer.Deserialize<TResponseModel>(result);
 
             if (ret is null) return new ErrorResultBase(500, "返回 JSON 解析为空");
-            if (ret is CodedResponseBase codedResponseBase && ((int)response.StatusCode) != 200)
+            if (ret is ResponseBase ResponseBase && ((int)response.StatusCode) != 200)
                 return Results<TResponseModel, ErrorResultBase>
                        .CreateError(new ErrorResultBase(((int)response.StatusCode), "返回值不为 200")).WithValue(ret);
             return ret;
