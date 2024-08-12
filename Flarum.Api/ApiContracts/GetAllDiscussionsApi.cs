@@ -7,9 +7,23 @@ using Flarum.Api.Bases;
 
 namespace Flarum.Api.ApiContracts
 {
-    public class GetAllDiscussionsApi : ApiBase<>
+    public class GetAllDiscussionsApi : 
+        ApiBase<GetAllDiscussionsActualRequest, GetAllDiscussionsRequest, GetAllDiscussionsResponse, ErrorResultBase>
     {
+        public override HttpMethod Method => HttpMethod.Get;
+
     }
 
-    public 
+    public class GetAllDiscussionsRequest : RequestBase
+    {
+
+    }
+    public class GetAllDiscussionsActualRequest : ActualRequestBase
+    {
+
+    }
+    public class GetAllDiscussionsResponse : ResponseBase
+    {
+
+    }
 }
