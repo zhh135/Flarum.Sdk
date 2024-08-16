@@ -4,6 +4,7 @@ using System.Text.Json;
 
 using Flarum.Api.Bases;
 using Flarum.Api.Helpers;
+using System.Diagnostics;
 
 
 namespace Flarum.Api.Bases
@@ -62,6 +63,9 @@ namespace Flarum.Api.Bases
             if (buffer is null || buffer.Length == 0) return new ErrorResultBase(500, "返回体预读取错误");
 
             var result = Encoding.UTF8.GetString(buffer);
+#if DEBUG
+            Debug.WriteLine(buffer[280]);
+#endif
             //result = StringHelper.ConvertUnicodeToString(result);, option.JsonSerializerOptions
             var ret = JsonSerializer.Deserialize<TResponseModel>(result);
 

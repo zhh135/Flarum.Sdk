@@ -22,6 +22,7 @@ namespace Flarum.Api
         {
             NumberHandling = JsonNumberHandling.WriteAsString |
                              JsonNumberHandling.AllowReadingFromString,
+
             AllowTrailingCommas = true,
             Converters = { new NumberToStringConverter(), new JsonBooleanConverter() }
         };

@@ -4,6 +4,6 @@ namespace Flarum.Api.Bases
 {
     public class ActualRequestBase
     {
-        [JsonPropertyName("authenication")] public string Token { get; set; } = null;
+        public string Token { get; set; } = null;
     }
 }
