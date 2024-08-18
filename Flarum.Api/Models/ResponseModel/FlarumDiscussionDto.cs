@@ -7,11 +7,11 @@ namespace Flarum.Api.Models.ResponseModel
         [JsonPropertyName("title")] public string Title { get; set; }
         [JsonPropertyName("slug")] public string Slug { get; set; }
         [JsonPropertyName("subscription")] public string Subscription { get; set; }
-        [JsonPropertyName("commentCount")] public string CommentCount { get; set; }
-        [JsonPropertyName("participantCount")] public string ParticipantCount { get; set; }
+        [JsonPropertyName("commentCount")] public int CommentCount { get; set; }
+        [JsonPropertyName("participantCount")] public int ParticipantCount { get; set; }
         [JsonPropertyName("replyTemplate")] public string ReplyTemplate { get; set; }
-        [JsonPropertyName("lastPostNumber")] public string LastPostNumber { get; set; }
-        [JsonPropertyName("lastReadPostNumber")] public string LastReadPostNumber { get; set; }
+        [JsonPropertyName("lastPostNumber")] public int LastPostNumber { get; set; }
+        [JsonPropertyName("lastReadPostNumber")] public int LastReadPostNumber { get; set; }
         [JsonPropertyName("votes")] public string Votes { get; set; }
         [JsonPropertyName("createdAt")] public DateTime CreatedAt { get; set; }
         [JsonPropertyName("lastPostedAt")] public DateTime LastPostedAt { get; set; }
@@ -26,7 +26,6 @@ namespace Flarum.Api.Models.ResponseModel
         [JsonPropertyName("hasApproved")] public bool HasApproved { get; set; }
         [JsonPropertyName("hasUpvoted")] public bool HasUpvoted { get; set; }
         [JsonPropertyName("hasDownvoted")] public bool HasDownvoted { get; set; }
-        [JsonPropertyName("hasBestAnswer")] public bool HasBestAnswer { get; set; }
         [JsonPropertyName("canTag")] public bool CanTag {  get; set; }
         [JsonPropertyName("canEditRecipients")] public bool CanEditRecipients { get; set; }
         [JsonPropertyName("canEditUserRecipients")] public bool CanEditUserRecipients { get; set; }
