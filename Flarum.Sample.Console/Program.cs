@@ -11,6 +11,8 @@ var info = result.Match(
     success => success?.Discussions.ToList(),
     error => new() { });
 Console.WriteLine($"{info[0].FlarumDiscussion.Title}");
+Console.WriteLine($"{info[0].FlarumDiscussion.Subscription}");
+
 //Console.WriteLine($"{info.Description}");
 //Console.WriteLine($"{info.WelcomeMessage}");
 //Console.WriteLine($"title:{info.Title}");

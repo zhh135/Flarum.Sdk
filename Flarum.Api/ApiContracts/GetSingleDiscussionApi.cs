@@ -9,22 +9,35 @@ using Flarum.Api.Models.ResponseModel;
 
 namespace Flarum.Api.ApiContracts
 {
-    public class GetAllDiscussionsApi : 
+    public class GetSingleDiscussionsApi :
         ApiBase<GetAllDiscussionsActualRequest, GetAllDiscussionsRequest, GetAllDiscussionsResponse, ErrorResultBase>
     {
         public override HttpMethod Method => HttpMethod.Get;
         public override string ApiPath => "/api/discussions";
+
+        public override Task MapRequest(GetAllDiscussionsRequest? request)
+        {
+            if (request is not null)
+            {
+                ActualRequest = new ()
+                {
+                    DiscussionId = request.DiscussionId
+                };
+                    
+            }
+            return Task.CompletedTask;
+        }
     }
 
-    public class GetAllDiscussionsRequest : RequestBase
+    public class GetSingleDiscussionsRequest : RequestBase
     {
-        public object DiscussionId { get; internal set; }
+        public required string DiscussionId { get; set; }
     }
-    public class GetAllDiscussionsActualRequest : ActualRequestBase
+    public class GetSingleDiscussionsActualRequest : ActualRequestBase
     {
-        public object DiscussionId { get; internal set; }
+        public required string DiscussionId { get; set; }
     }
-    public class GetAllDiscussionsResponse : ResponseBase
+    public class GetSingleDiscussionsResponse : ResponseBase
     {
         [JsonPropertyName("links")] public Link Links { get; set; }
         [JsonPropertyName("data")] public DiscussionsInfo[]? Discussions { get; set; }
