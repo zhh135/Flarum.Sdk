@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Flarum.Api.Bases;
+using Flarum.Api.Bases.ModelBases;
 
 namespace Flarum.Api.Models.ResponseModel
 {

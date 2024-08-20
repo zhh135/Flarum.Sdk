@@ -5,52 +5,77 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Flarum.Api.Bases;
+using Flarum.Api.Bases.ModelBases;
+using Flarum.Api.Helpers;
 using Flarum.Api.Models.ResponseModel;
 
 namespace Flarum.Api.ApiContracts
 {
-    public class GetSingleDiscussionsApi :
-        ApiBase<GetAllDiscussionsActualRequest, GetAllDiscussionsRequest, GetAllDiscussionsResponse, ErrorResultBase>
+    public class GetSingleDiscussionApi :
+        ApiBase<GetSingleDiscussionActualRequest, GetSingleDiscussionRequest, GetSingleDiscussionResponse, ErrorResultBase>
     {
         public override HttpMethod Method => HttpMethod.Get;
         public override string ApiPath => "/api/discussions";
 
-        public override Task MapRequest(GetAllDiscussionsRequest? request)
+        public override Task MapRequest(GetSingleDiscussionRequest? request)
         {
-            if (request is not null)
+            ActualRequest = new()
             {
-                ActualRequest = new ()
-                {
-                    DiscussionId = request.DiscussionId
-                };
-                    
-            }
+                DiscussionId = request.DiscussionId.ToString(),
+            };
+
             return Task.CompletedTask;
         }
-    }
 
-    public class GetSingleDiscussionsRequest : RequestBase
-    {
-        public required string DiscussionId { get; set; }
-    }
-    public class GetSingleDiscussionsActualRequest : ActualRequestBase
-    {
-        public required string DiscussionId { get; set; }
-    }
-    public class GetSingleDiscussionsResponse : ResponseBase
-    {
-        [JsonPropertyName("links")] public Link Links { get; set; }
-        [JsonPropertyName("data")] public DiscussionsInfo[]? Discussions { get; set; }
-
-        public class Link
+        public override async Task<HttpRequestMessage> GenerateRequestMessageAsync(FlarumApiHandlerOption option)
         {
-            [JsonPropertyName("first")] public string FirstLink { get; set; }
-            [JsonPropertyName("next")] public string NextLink { get; set; }
+            return await GenerateRequestMessageAsync(ActualRequest!, option).ConfigureAwait(false);
         }
 
-        public class DiscussionsInfo : FlarumDataBase
+        public override Task<HttpRequestMessage> GenerateRequestMessageAsync<TActualRequestModel>(TActualRequestModel actualRequest, FlarumApiHandlerOption option)
+        {
+            var request = new HttpRequestMessage();
+            var req = actualRequest as GetSingleDiscussionActualRequest ?? new GetSingleDiscussionActualRequest();
+            var fullUri = $"{option.Url}{ApiPath}/{req.DiscussionId}";
+            request.Method = Method;
+            request.RequestUri = new Uri(fullUri);
+            request.Headers.Add("UserAgent", UserAgentHelper.GetRandomUserAgent(UserAgent));
+            var cookies = option.Cookies.ToDictionary(t => t.Key, t => t.Value);
+            foreach (var keyValuePair in Cookies)
+            {
+                cookies[keyValuePair.Key] = keyValuePair.Value;
+            }
+            return Task.FromResult(request);
+        }
+    }
+
+    public class GetSingleDiscussionRequest : RequestBase
+    {
+        public int DiscussionId { get; set; }
+    }
+    public class GetSingleDiscussionActualRequest : ActualRequestBase
+    {
+        public string DiscussionId { get; internal set; }
+    }
+    public class GetSingleDiscussionResponse : ResponseBase
+    {
+        [JsonPropertyName("data")] public DiscussionInfo? Discussion { get; set; }
+
+        public class DiscussionInfo : FlarumDataBase
         {
             [JsonPropertyName("attributes")] public FlarumDiscussionDto FlarumDiscussion { get; set; }
+            [JsonPropertyName("relationships")] public DiscussionRelationships Relationships { get; set; }
+
+        }
+
+        public class DiscussionRelationships : FlarumRelationshipsBase
+        {
+            //[JsonPropertyName("posts")] public StreamlinedPostsInfo[]? StreamlinedPostsInfos { get; set; }
+        }
+
+        public class StreamlinedPostsInfo : FlarumDataBase
+        {
+
         }
     }
 }

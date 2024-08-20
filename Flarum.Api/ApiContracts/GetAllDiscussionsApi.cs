@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Flarum.Api.Bases;
+using Flarum.Api.Bases.ModelBases;
 using Flarum.Api.Models.ResponseModel;
 
 namespace Flarum.Api.ApiContracts
@@ -18,11 +19,11 @@ namespace Flarum.Api.ApiContracts
 
     public class GetAllDiscussionsRequest : RequestBase
     {
-        public object DiscussionId { get; internal set; }
+        
     }
     public class GetAllDiscussionsActualRequest : ActualRequestBase
     {
-        public object DiscussionId { get; internal set; }
+        
     }
     public class GetAllDiscussionsResponse : ResponseBase
     {
