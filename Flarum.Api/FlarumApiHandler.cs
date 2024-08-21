@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Flarum.Api.Bases;
-using Kengwang.Toolkit;
+using Flarum.Api.Bases.ModelBases;
 
 namespace Flarum.Api
 {
