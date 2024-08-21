@@ -6,11 +6,11 @@ using System.Net.NetworkInformation;
 var handler = new FlarumApiHandler();
 var options = new FlarumApiHandlerOption();
 options.Url = "https://community.wvbtech.com";
-var result = await handler.RequestAsync<GetSingleDiscussionRequest, GetSingleDiscussionResponse, ErrorResultBase, GetSingleDiscussionActualRequest>(new GetSingleDiscussionApi(), new GetSingleDiscussionRequest() { DiscussionId = 2533},options);
+var result = await handler.RequestAsync<GetPostInfoRequest, GetPostInfoResponse, ErrorResultBase, GetPostInfoActualRequest>(new GetPostInfoApi(), new GetPostInfoRequest() { PostId = 48194},options);
 var info = result.Match(
-    success => success?.Discussion.FlarumDiscussion,
+    success => success?.Data.Post,
     error => new() { });
-Console.WriteLine($"{info.Title}");
+Console.WriteLine($"{info.ContentType}");
 
 
 //Console.WriteLine($"{info.Description}");
