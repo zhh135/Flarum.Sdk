@@ -23,6 +23,15 @@ namespace Flarum.Api.Models.ResponseModel
         [JsonPropertyName("lastSeenAt")] public DateTime LastSeenAt { get; set; }
         [JsonPropertyName("nearataTwoFactorCanEnable")] public bool NearataTwoFactorCanEnable { get; set; }
         [JsonPropertyName("canSuspend")] public bool CanSuspend { get; set; }
+        [JsonPropertyName("canEditNickname")] public bool CanEditNickname { get; set; }
+        [JsonPropertyName("canSpamblock")] public bool CanSpamblock { get; set; }
+        [JsonPropertyName("blocksPd")] public bool BlocksPd { get; set; }
+        [JsonPropertyName("cannotBeDirectMessaged")] public bool CannotBeDirectMessaged { get; set; }
+        [JsonPropertyName("points")] public int Points { get; set; }
+        [JsonPropertyName("canHaveVotingNotifications")] public bool CanHaveVotingNotifications { get; set; }
+        [JsonPropertyName("canMiserable")] public bool CanMiserable { get; set; }
+        [JsonPropertyName("canBeFollowed")] public bool CanBeFollowed { get; set; }
+        [JsonPropertyName("followingCount")] public int FollowingCount { get; set; }
 
     }
 }
