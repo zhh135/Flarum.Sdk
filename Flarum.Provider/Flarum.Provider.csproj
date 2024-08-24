@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Flarum.Api\Flarum.Api.csproj" />
+  </ItemGroup>
+
 </Project>
