@@ -19,7 +19,22 @@ namespace Flarum.Provider.Mappers
                 Color = data.Color,
                 BackgroundUrl = data.BackgroundUrl,
                 BackgroundMode = data.BackgroundMode,
-            }
+                Icon = data.Icon,
+                DiscussionCount = data.DiscussionCount,
+                Position = data.Position,
+                DefaultSort = data.DefaultSort,
+                IsChild = data.IsChild,
+                IsHidden = data.IsHidden,
+                LastPostedAt = data.LastPostedAt,
+                CanStartDiscussion = data.CanStartDiscussion,
+                CanAddToDiscussion = data.CanAddToDiscussion,
+                Subscription = data.Subscription,
+                RichExcerpts = data.RichExcerpts,
+                ExcerptLength = data.ExcerptLength,
+                IsQnA = data.IsQnA,
+                Reminders = data.Reminders,
+                Template = data.Template
+            };
         }
     }
 }

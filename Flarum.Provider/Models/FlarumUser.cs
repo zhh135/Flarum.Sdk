@@ -44,10 +44,10 @@ namespace Flarum.Provider.Models
         public bool CanVotePolls { get; set; }
         public bool Ignored { get; set; }
         public bool CanBeIgnored { get; set; }
-        public bool BestAnswerCount { get; set; }
+        public int BestAnswerCount { get; set; }
         public bool CanViewWarnings { get; set; }
         public bool CanManageWarnings { get; set; }
         public bool CanDeleteWarnings { get; set; }
-        public bool VisibleWarningCount { get; set; }
+        public int VisibleWarningCount { get; set; }
     }
 }

@@ -44,10 +44,10 @@ namespace Flarum.Api.Models.ResponseModel
         [JsonPropertyName("canVotePolls")] public bool CanVotePolls { get; set; }
         [JsonPropertyName("ignored")] public bool Ignored { get; set; }
         [JsonPropertyName("canBeIgnored")] public bool CanBeIgnored { get; set; }
-        [JsonPropertyName("bestAnswerCount")] public bool BestAnswerCount { get; set; }
+        [JsonPropertyName("bestAnswerCount")] public int BestAnswerCount { get; set; }
         [JsonPropertyName("canViewWarnings")] public bool CanViewWarnings { get; set; }
         [JsonPropertyName("canManageWarnings")] public bool CanManageWarnings { get; set; }
         [JsonPropertyName("canDeleteWarnings")] public bool CanDeleteWarnings { get; set; }
-        [JsonPropertyName("visibleWarningCount")] public bool VisibleWarningCount { get; set; }
+        [JsonPropertyName("visibleWarningCount")] public int VisibleWarningCount { get; set; }
     }
 }
