@@ -32,6 +32,22 @@ namespace Flarum.Api.Models.ResponseModel
         [JsonPropertyName("canMiserable")] public bool CanMiserable { get; set; }
         [JsonPropertyName("canBeFollowed")] public bool CanBeFollowed { get; set; }
         [JsonPropertyName("followingCount")] public int FollowingCount { get; set; }
-
+        [JsonPropertyName("followerCount")] public int FollowerCount { get; set; }
+        [JsonPropertyName("bio")] public string Bio { get; set; }
+        [JsonPropertyName("canViewBio")] public bool CanViewBio { get; set; }
+        [JsonPropertyName("canEditBio")] public bool CanEditBio { get; set; }
+        [JsonPropertyName("canViewSocialProfile")] public bool CanViewSocialProfile { get; set; }
+        [JsonPropertyName("canEditSocialProfile")] public bool CanEditSocialProfile { get; set; }
+        [JsonPropertyName("canEditPolls")] public bool CanEditPolls { get; set; }
+        [JsonPropertyName("canStartPolls")] public bool CanStartPolls { get; set; }
+        [JsonPropertyName("canSelfEditPolls")] public bool CanSelfEditPolls { get; set; }
+        [JsonPropertyName("canVotePolls")] public bool CanVotePolls { get; set; }
+        [JsonPropertyName("ignored")] public bool Ignored { get; set; }
+        [JsonPropertyName("canBeIgnored")] public bool CanBeIgnored { get; set; }
+        [JsonPropertyName("bestAnswerCount")] public bool BestAnswerCount { get; set; }
+        [JsonPropertyName("canViewWarnings")] public bool CanViewWarnings { get; set; }
+        [JsonPropertyName("canManageWarnings")] public bool CanManageWarnings { get; set; }
+        [JsonPropertyName("canDeleteWarnings")] public bool CanDeleteWarnings { get; set; }
+        [JsonPropertyName("visibleWarningCount")] public bool VisibleWarningCount { get; set; }
     }
 }
