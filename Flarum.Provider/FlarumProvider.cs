@@ -130,7 +130,7 @@ namespace Flarum.Provider
                         success => success?.Data.User,
                         error => new()));
         }
-
+/*
         public async Task<FlarumTag> GetFlarumTagByIdAsync(int id)
         {
             var request = new GetUserInfoRequest() { UserId = id };
@@ -140,5 +140,6 @@ namespace Flarum.Provider
                         success => success?.Data.User,
                         error => new()));
         }
+*/
     }
 }

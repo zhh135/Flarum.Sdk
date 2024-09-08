@@ -1,0 +1,44 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: NuGet Publish
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+      - name: Build NuGet Packages
+        run: |
+          dotnet pack Flarum.FlarumApi/Flarum.FlarumApi.csproj -c Release -o Packages/
+          dotnet pack Flarum.Provider/Flarum.Provider.csproj -c Release -o Packages/
+
+      - name: Publish Packages to Artifacts
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          name: packages
+          path: Packages
+
+
+
+      - name: Publish To NuGet
+        run: |
+          dotnet nuget push "Packages/*.nupkg" -k ${{ secrets.NUGET_APIKEY }} -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+
+      

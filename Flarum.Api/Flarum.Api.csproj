@@ -5,6 +5,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<LangVersion>latest</LangVersion>
+	<Description>A Third Party Sdk For Flarum</Description>
+	<PackageProjectUrl>https://github.com/zhh135/Flarum.Sdk</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/zhh135/Flarum.Sdk</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<Authors>zhh135</Authors>
+	<Company>zhh135</Company>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
