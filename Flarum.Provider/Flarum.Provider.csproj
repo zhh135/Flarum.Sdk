@@ -8,7 +8,7 @@
     <Title>Flarum.Provider</Title>
     <Authors>zhh135</Authors>
     <Company>zhh135</Company>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
     <Description>A Third Party Sdk For Flarum</Description>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/zhh135/Flarum.Sdk</RepositoryUrl>
