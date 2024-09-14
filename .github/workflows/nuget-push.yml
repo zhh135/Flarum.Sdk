@@ -26,7 +26,7 @@ jobs:
         run: dotnet test --no-build --verbosity normal
       - name: Build NuGet Packages
         run: |
-          dotnet pack Flarum.FlarumApi/Flarum.FlarumApi.csproj -c Release -o Packages/
+          dotnet pack Flarum.Api/Flarum.Api.csproj -c Release -o Packages/
           dotnet pack Flarum.Provider/Flarum.Provider.csproj -c Release -o Packages/
 
       - name: Publish Packages to Artifacts
