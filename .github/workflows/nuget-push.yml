@@ -5,7 +5,7 @@ name: NuGet Publish
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -39,6 +39,6 @@ jobs:
 
       - name: Publish To NuGet
         run: |
-          dotnet nuget push "Packages/*.nupkg" -k ${{ secrets.NUGET_APIKEY }} -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
+          dotnet nuget push "Packages/*.nupkg" -k ${{ secrets.NUGET_KEY }} -s 'https://api.nuget.org/v3/index.json' --skip-duplicate
 
       
